@@ -1,7 +1,7 @@
+import re
 from helper_functions import *
 
 
-# valid_tokens = ['eq', '+', '-', '/', '*', 'atom', 'quote', '(', ')', 'cons', 'car', 'cdr']
 valid_tokens = {
     'eq': equals,
     '+': add,
@@ -13,11 +13,13 @@ valid_tokens = {
     '(': '',
     ')': '',
     'cons': cons,
+    'cond': cond,
     'car': car,
     'cdr': cdr,
     'defun': 'defun'
 }
 
+user_def_funcs = {'dummyKey': 'dummyValue'}
 
 
 def tokenize(user_input):
@@ -32,50 +34,15 @@ def parenthesis_correct(tokens):
 
 
 def tokens_valid(tokens):
-    """Returns true if all the tokens are valid. False otherwise."""
+    """Returns True if all the tokens are valid. False otherwise."""
+    pattern = r'^[a-zA-Z0-9_()+/*-]+$'
     for token in tokens:
-        if (token not in valid_tokens.keys() and not token.isalnum()):
+        if (not re.match(pattern, token)) and (token not in valid_tokens.keys()
+            and (token not in user_def_funcs.keys())
+        ):
             return False
     return True
 
-
-# def translate(tokens):
-#     """Translates tokens into intermediate form"""
-#     if tokens_valid(tokens):
-#         instructions = []
-#         while tokens:
-#             token = tokens[0]
-
-#             if token != '(' and token != ')':
-#                 if token in valid_tokens.keys():
-#                     instruction = valid_tokens[token]
-#                 elif token.isdigit():
-#                     instruction = int(token)
-#                 else:
-#                     instruction = token
-
-#                 instructions.append(instruction)
-#                 tokens.pop(0)
-
-#             elif token == '(':
-#                 nested_tokens = tokens[1:]
-#                 nested_instructions = translate(nested_tokens)
-#                 instructions.append(nested_instructions)
-#                 tokens = nested_tokens[len(nested_instructions):]
-
-#             elif token == ')':
-#                 tokens.pop(0)
-#                 break
-
-#         if 'quote' in instructions:
-#             quote_index = instructions.index('quote')
-#             quoted_expression = instructions[quote_index+1]
-#             instructions = ['quote', quoted_expression]
-
-#         return instructions
-
-#     else:
-#         return "Syntax Error Occurred"
 
 
 def translate(tokens):
@@ -102,14 +69,69 @@ def translate(tokens):
         return "Syntax Error Occurred"
 
 
+
+def defun(*args):
+    args_list = list(args)
+    parameters = args_list[1]
+    user_def_funcs[args_list[0]] = lambda *parameters: args_list[2]
+
+
+def execute_list(lst):
+    if isinstance(lst, list):
+
+        if len(lst) == 0: return []
+        if lst[0] != 'defun':
+            operator = lst[0]
+            operands = [execute_list(item) for item in lst[1:]]
+        else:
+            operator = lst[0]
+            operands = lst[1:]
+        
+        if not isinstance(operator, list) and operator in user_def_funcs.keys():
+            # return user_def_funcs[operator](operands)
+            # print(user_def_funcs[operator])
+            return execute_list(user_def_funcs[operator](operands))
+        
+        if operator == '*':
+            return multiply(operands)
+        elif operator == '+':
+            return add(operands)
+        elif operator == '-':
+            return subtract(operands)
+        elif operator == '/':
+            return divide(operands)
+        elif operator == 'car':
+            return car(operands)
+        elif operator == 'cdr':
+            return cdr(operands)
+        elif operator == 'eq':
+            return equals(operands)
+        elif operator == 'quote':
+            return quote(operands)
+        elif operator == 'atom':
+            return is_atom(operands)
+        elif operator == 'cons':
+            return cons(operands)
+        elif operator == 'cond':
+            return cond(operands)
+        elif operator == 'defun':
+            defun(*operands)
+            return None
+        else:
+            return [execute_list(item) for item in lst]
+    else:
+        return lst
+
+
 def evaluate(instructions):
     if (type(instructions) is str): # an error occurred
         return instructions
     else:
-        func = valid_tokens[instructions[0][0]]
-        print(func)
-        result = func(*instructions[0][1:])
-        return result
+        # func = valid_tokens[instructions[0][0]]
+        # print(func)
+        result = execute_list(instructions)
+        # result = func(*instructions[0][1:])
+        return result[0]
 
 
 def repl():
@@ -122,11 +144,11 @@ def repl():
             break
 
         tokens = tokenize(user_input)
-        print("tokens ", tokens)
+        # print("tokens ", tokens)
         if parenthesis_correct(tokens):
             instructions = translate(tokens)
             # instructions
-            print("instr ",instructions)
+            # print("instr ",instructions)
             result = evaluate(instructions)
             print(f"lisp >> {result}")
         else:
