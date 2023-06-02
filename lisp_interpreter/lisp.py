@@ -132,6 +132,14 @@ def evaluate(instructions):
         result = execute_list(instructions)
         # result = func(*instructions[0][1:])
         return result[0]
+    
+
+def format_output(result):
+    output_string = ""
+    if (isinstance(result, list)):
+        output_string = " ".join([str(item) for item in result]).replace("[", "(").replace("]", ")").replace(",", "")
+        return "(" + output_string + ")"
+    return result
 
 
 def repl():
@@ -150,7 +158,9 @@ def repl():
             # instructions
             # print("instr ",instructions)
             result = evaluate(instructions)
-            print(f"lisp >> {result}")
+            output = format_output(result)
+
+            print(f"lisp >> {output}")
         else:
             print(f"lisp >> Parenthesis Error")
 

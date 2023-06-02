@@ -78,13 +78,13 @@ def cons(operands):
 
 
 def cond(operands):
-    print("cond", operands)
+    # print("cond", operands)
     true = [True, 't']
 
     for element in operands:
         if isinstance(element, list) and "quote" in element:
             element.remove("quote")
-    print(operands)
+    # print(operands)
 
     for lst in operands:
         if lst[0] in true:
