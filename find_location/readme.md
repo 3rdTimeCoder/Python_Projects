@@ -36,4 +36,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 
-This script was created by [Nomah S.](https://github.com/nomah-s).
+This script was created by [Nomah S.](https://github.com/3rdTimeCoder).
