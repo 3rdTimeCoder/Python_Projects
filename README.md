@@ -51,4 +51,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Thank you for checking out my Python projects!
 
-Author: [Nomah S.](https://3rdtimecoder.netlify.app/)
+Author: [Nomah S.](https://github.com/3rdTimeCoder)
