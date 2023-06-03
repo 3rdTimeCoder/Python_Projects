@@ -77,9 +77,8 @@ def defun(*args):
     args_list = list(args)
     params = args_list[1]
     body = args_list[2]
-    print("params", params)
-    print("body", body)
     user_def_funcs[args_list[0]] = create_function(params, body)
+    return "function created"
 
 
 def execute_list(lst):
@@ -94,9 +93,9 @@ def execute_list(lst):
             operands = lst[1:]
         
         if not isinstance(operator, list) and operator in user_def_funcs.keys():
-            # return user_def_funcs[operator](operands)
-            print("operator", operator)
-            print("operands", operands)
+            for i in range(operands.count("quote")):
+                operands.remove("quote")
+            if isinstance(operands, list): operands = operands[0]
             return execute_list(user_def_funcs[operator](operands))
         
         if operator == '*':
@@ -122,8 +121,7 @@ def execute_list(lst):
         elif operator == 'cond':
             return cond(operands)
         elif operator == 'defun':
-            defun(*operands)
-            return None
+            return defun(*operands)
         else:
             return [execute_list(item) for item in lst]
     else:
@@ -134,42 +132,53 @@ def evaluate(instructions):
     if (type(instructions) is str): # an error occurred
         return instructions
     else:
-        # func = valid_tokens[instructions[0][0]]
-        # print(func)
         result = execute_list(instructions)
-        # result = func(*instructions[0][1:])
         return result[0]
     
 
 def format_output(result):
     output_string = ""
+    
     if (isinstance(result, list)):
-        output_string = " ".join([str(item) for item in result]).replace("[", "(").replace("]", ")").replace(",", "")
+        output_string = " ".join([str(item) for item in result]) \
+            .replace("[", "(") \
+            .replace("]", ")") \
+            .replace(",", "") \
+            .replace("True", "t") \
+            .replace("False", "()")
+        
         return "(" + output_string + ")"
-    return result
+    
+    return str(result).replace("True", "t").replace("False", "()")
 
 
 def repl():
     """A simple repl implementation"""
+
+    count = 1
     user_input = ""
+
     while True:
-        user_input = input("lisp >> ").lower()
+        user_input = input(f"lisp[{count}]> ").lower()
 
         if user_input == "quit":
             break
+        if user_input == "clear":
+            clear()
+            continue
 
         tokens = tokenize(user_input)
-        # print("tokens ", tokens)
+
         if parenthesis_correct(tokens):
             instructions = translate(tokens)
-            # instructions
-            # print("instr ",instructions)
             result = evaluate(instructions)
             output = format_output(result)
+            print(f"lisp[{count}]> {output}")
 
-            print(f"lisp >> {output}")
         else:
-            print(f"lisp >> Parenthesis Error")
+            print(f"lisp[{count}]> Parenthesis Error")
+        
+        count += 1
 
 
 

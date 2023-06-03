@@ -1,19 +1,25 @@
+import os
+import platform
+
+
 def add(operands):
-    # print("add",operands)
-    return sum(operands)
+    try:
+        return sum(operands)
+    except:
+        return "Error Occurred"
 
 
 def equals(operands):
-    # print("equals", operands)
     for i in range(operands.count('quote')):
         operands.remove('quote')
+        if (operands[0] == [[]]): operands[0] = []
     return operands[0] == operands[1]
 
 
 def car(operands):
     for i in range(operands.count("quote")):
         operands.remove("quote")
-    if len(operands) != 0: return operands[0][0]
+    if len(operands) != 0 and operands[0] != []: return operands[0][0]
     else: return []
 
 
@@ -25,27 +31,33 @@ def cdr(operands):
 
 
 def subtract(operands):
-    # print("sub", operands)
-    result = operands[0]
-    for num in operands[1:]:
-        result -= num
-    return result
+    try:
+        result = operands[0]
+        for num in operands[1:]:
+            result -= num
+        return result
+    except:
+        return "Error Occurred"
 
 
 def divide(operands):
-    # print("div",operands)
-    result = operands[0]
-    for num in operands[1:]:
-        result /= num
-    return result
+    try:
+        result = operands[0]
+        for num in operands[1:]:
+            result /= num
+        return result
+    except:
+        return "Error Occurred"
 
 
 def multiply(operands):
-    # print("mul",operands)
-    result = operands[0]
-    for num in operands[1:]:
-        result *= num
-    return result
+    try:
+        result = operands[0]
+        for num in operands[1:]:
+            result *= num
+        return result
+    except:
+        return "Error Occurred"
 
 
 def is_atom(operands):
@@ -78,18 +90,23 @@ def cons(operands):
 
 
 def cond(operands):
-    # print("cond", operands)
     true = [True, 't']
 
     for element in operands:
         if isinstance(element, list) and "quote" in element:
             element.remove("quote")
-    # print(operands)
 
     for lst in operands:
         if lst[0] in true:
             return lst[1]
     return []
+
+
+def clear():
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
 
 
 
