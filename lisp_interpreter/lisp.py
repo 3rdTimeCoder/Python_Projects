@@ -67,13 +67,19 @@ def translate(tokens):
         return converted
     else:
         return "Syntax Error Occurred"
+    
 
+def create_function(params, body):
+    return lambda *args: [body[0], *[arg if arg not in params else args[params.index(arg)] for arg in body[1:]]]
 
 
 def defun(*args):
     args_list = list(args)
-    parameters = args_list[1]
-    user_def_funcs[args_list[0]] = lambda *parameters: args_list[2]
+    params = args_list[1]
+    body = args_list[2]
+    print("params", params)
+    print("body", body)
+    user_def_funcs[args_list[0]] = create_function(params, body)
 
 
 def execute_list(lst):
@@ -89,7 +95,8 @@ def execute_list(lst):
         
         if not isinstance(operator, list) and operator in user_def_funcs.keys():
             # return user_def_funcs[operator](operands)
-            # print(user_def_funcs[operator])
+            print("operator", operator)
+            print("operands", operands)
             return execute_list(user_def_funcs[operator](operands))
         
         if operator == '*':
