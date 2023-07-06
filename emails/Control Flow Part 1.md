@@ -90,6 +90,59 @@ The nested if-else statements check the value of `age` to determine if the perso
 Nested if-else statements allow for more complex decision-making by combining multiple conditions and code blocks to handle various scenarios in your program.
 
 
+<br>
+<hr>
+
+## If-Else Statement with `and`
+
+```python
+# If-else statement with 'and'
+# if (Condition1 is true) and (Condition2 is true):
+    # do this
+# else:
+    # do this instead
+
+age = 25
+is_student = True
+
+if age >= 18 and is_student:
+    print("You are eligible for a student discount.")
+else:
+    print("You are not eligible for a student discount.")
+```
+
+- The `and` operator allows you to check if multiple conditions are `True` simultaneously.
+- In this example, the if condition `(age >= 18) and (is_student)` checks if the age is greater than or equal to 18 and if the person is a student.
+- If both conditions evaluate to `True`, the code block under the `if` statement is executed, printing "You are eligible for a student discount."
+- If either of the conditions is `False`, the code block under the `else` statement is executed, printing "You are not eligible for a student discount."
+
+## If-Else Statement with `or`
+
+```python
+# If-else statement with 'or'
+# if (Condition1 is true) or (Condition2 is true):
+    # do this
+# else:
+    # do this instead
+
+temperature = 28
+is_raining = False
+
+if temperature > 30 or is_raining:
+    print("It's a hot day or it's raining.")
+else:
+    print("It's neither hot nor raining.")
+```
+
+- The `or` operator allows you to check if at least one of the conditions is `True`.
+- In this example, the if condition `(temperature > 30) or (is_raining)` checks if the temperature is greater than 30 or if it's raining.
+- If either of the conditions evaluates to `True`, the code block under the `if` statement is executed, printing "It's a hot day or it's raining."
+- If both conditions are `False`, the code block under the `else` statement is executed, printing "It's neither hot nor raining."
+
+Using `and` and `or` operators in if-else statements allows you to combine conditions and make decisions based on multiple factors.
+
+
+
 
 
 <br>
