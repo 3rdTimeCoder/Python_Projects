@@ -187,4 +187,63 @@ the output of this code snippet if `n` is initialized as 4?
 Done
 ```
 
-These explanations and expected outputs should provide a comprehensive understanding of each code snippet and its corresponding results.
+#### Program to Print Multiplication Table of a Given Number
+
+```python
+num = int(input("Enter a number: "))
+
+for i in range(1, 11):
+    result = num * i
+    print(result)
+```
+
+- The program prompts the user to enter a number using the `input()` function and stores it in the variable `num`.
+- The for loop iterates from 1 to 10 using the `range(1, 11)` statement.
+- Inside the loop, the variable `result` is calculated as the multiplication of `num` and the loop variable `i`.
+- The value of `result` is printed using the `print(result)` statement.
+- This loop continues for each value of `i` from 1 to 10, effectively printing the multiplication table of the given number.
+
+**Question:** If the user enters 2 as input, what is the output of this code snippet?
+**Expected Output:**
+```
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+```
+
+#### Reversing a Given Integer Using a While Loop
+
+```python
+num = int(input("Enter an integer: "))
+reverse = 0
+
+while num > 0:
+    digit = num % 10
+    reverse = reverse * 10 + digit
+    num = num // 10
+
+print("Reverse Number:", reverse)
+```
+
+- The program prompts the user to enter an integer using the `input()` function and stores it in the variable `num`.
+- The variable `reverse` is initialized to 0 to hold the reversed number.
+- Inside the while loop, we extract the rightmost digit of `num` using the modulus operator (`%`) and store it in the variable `digit`.
+- The reversed number `reverse` is calculated by multiplying it by 10 and adding the `digit`.
+- The updated value of `num` is obtained by performing integer division (`//`) of `num` by 10, removing the rightmost digit.
+- The loop continues until `num` becomes 0, which means we have processed all the digits of the original number.
+- Finally, the reversed number is printed using the `print("Reverse Number:", reverse)` statement.
+
+**Question:** If the user enters 123 as input, what is the output of this code snippet?
+**Expected Output:**
+```
+123
+Reverse Number: 321
+```
+
