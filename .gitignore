@@ -1,6 +1,9 @@
 /venv/
 *.pyc
-assistant/venv/
+news_assistant/venv/
 Python-3.6.0.tgz
 Python-3.6.0
 *.mp3
+news_api.txt
+article.txt
+story.txt
