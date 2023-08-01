@@ -16,7 +16,7 @@ def get_input():
 
 def get_url(choice):
     news_options = [from_tech_crunch, from_news24, business_new_from_usa, search_topic]
-    return news_options[choice-1]
+    return news_options[choice-1]()
         
 
 def generate_news_string(user_in):
