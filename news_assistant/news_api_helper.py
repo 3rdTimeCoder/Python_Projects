@@ -50,7 +50,7 @@ def filter_response(response):
     return f_res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     url = from_tech_crunch()
     url = from_news24()
     res = send_request(url)

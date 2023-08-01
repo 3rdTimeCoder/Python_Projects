@@ -26,10 +26,11 @@ def generate_news_string(user_in):
     return f_res
 
 def read_news(text):
+    print("Preparing your news..")
     text_to_mp3(text)
     play_audio("text.mp3")
 
 if __name__ == '__main__':
     user_input = get_input()
     news = generate_news_string(user_input)
-    play_audio(news)
+    read_news(news)
