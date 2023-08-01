@@ -1,23 +1,35 @@
-import traceback
-# import speech_recognition as sr
-import pyttsx3
-
-# listener = sr.Recognizer()
-# engine = pyttsx3.init()
-# engine.say("Hello, My name is Alexa. How can I help you?")
-# engine.runAndWait()
+from news_api_helper import *
+from audio_helper import *
 
 
-# this listens for audio input and outputs it as audio.
-# try:
-#     with sr.Microphone() as source:
-#         print("listening...")
-#         voice = listener.listen(source)
-#         command = listener.recognize_google(voice)
-#         if "alexa" in command:
-#             engine.say(command)
-#             engine.runAndWait()
-#             print(command)
-# except:
-#     print("an error occured")
-#     traceback.print_exc()
+def get_input():
+    user_in = ''
+    valid = [1,2,3,4]
+
+    print("1.Tech News \n2.South African News"
+        "\n3. US Business News \n5.Search News Topic")
+    while not user_in.isdigit() or int(user_in) not in valid:
+        user_in = input("Enter Number: ")
+
+    return int(user_in)
+
+
+def get_url(choice):
+    news_options = [from_tech_crunch, from_news24, business_new_from_usa, search_topic]
+    return news_options[choice-1]
+        
+
+def generate_news_string(user_in):
+    url = get_url(user_in)
+    res = send_request(url)
+    f_res = filter_response(res)
+    return f_res
+
+def read_news(text):
+    text_to_mp3(text)
+    play_audio("text.mp3")
+
+if __name__ == '__main__':
+    user_input = get_input()
+    news = generate_news_string(user_input)
+    play_audio(news)
