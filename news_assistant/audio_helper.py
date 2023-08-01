@@ -3,10 +3,8 @@ import pygame
 
 
 def text_to_mp3(text):
-    print("Starting text to speech conversion...")
     audio = gTTS(text=text, lang="en", slow=False)
     audio.save("text.mp3")
-    print("Completed text to speech conversion...")
 
 
 def play_audio(file_path):
