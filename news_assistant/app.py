@@ -1,5 +1,8 @@
 from flask import Flask, flash, request, render_template, session, redirect
 
+from helpers.news_api_helper import *
+from helpers.audio_helper import *
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,7 +11,10 @@ def home():
 
 @app.route('/Tech')
 def tech():
-    
+    url = from_tech_crunch()
+    res = send_request(url)
+    f_res = filter_response(res)
+    text_to_mp3(f_res)
     return render_template('tech.html')
 
 @app.route('/RSA')

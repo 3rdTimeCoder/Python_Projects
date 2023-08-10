@@ -7,3 +7,4 @@ Python-3.6.0
 news_api.txt
 article.txt
 story.txt
+__pycache__

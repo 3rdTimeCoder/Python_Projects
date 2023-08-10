@@ -1,8 +1,9 @@
 import requests
 from datetime import date
+import os
 
 
-NEWS_API_KEY = open('news_api.txt').read()
+NEWS_API_KEY = open('./news_api.txt').read()
 
 def search_topic(query):
     url = ('https://newsapi.org/v2/everything?'

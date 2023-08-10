@@ -16,9 +16,9 @@ def play_audio(file_path):
 
 
 if __name__ == "__main__":
-    # file = "./story"
-    # story = open(file + ".txt")
-    # text_to_mp3(story.read())
-    # story.close()
+    file = "./story"
+    story = open(file + ".txt")
+    text_to_mp3(story.read())
+    story.close()
     play_audio("./static/music/text.mp3")
 

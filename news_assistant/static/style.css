@@ -623,45 +623,10 @@ input[type="submit"],
     text-align: center;
 }
 
-#companyHome {
-    min-height: 100vh;
-}
 
 
-/* Card */
 
-.card-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 800px;
-    margin: 0 auto;
-    /* border: 1px solid red; */
-    width: 90%;
-}
 
-.card {
-    flex: 1;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 01rem;
-    background-color: #fff;
-    color: #111;
-    text-align: center;
-}
 
-.card img {
-    max-width: 100%;
-    height: auto;
-}
 
-.card-description {
-    margin-top: 10px;
-}
 
-.card-link {
-    display: block;
-    margin-top: 10px;
-    text-align: right;
-}
