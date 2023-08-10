@@ -2,3 +2,4 @@ SpeechRecognition
 PyAudio
 pyttsx3
 gTTS
+Flask
