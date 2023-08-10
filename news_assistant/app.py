@@ -8,6 +8,7 @@ def home():
 
 @app.route('/Tech')
 def tech():
+    
     return render_template('tech.html')
 
 @app.route('/RSA')

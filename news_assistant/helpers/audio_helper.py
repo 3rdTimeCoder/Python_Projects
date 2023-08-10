@@ -4,7 +4,7 @@ import pygame
 
 def text_to_mp3(text):
     audio = gTTS(text=text, lang="en", slow=False)
-    audio.save("text.mp3")
+    audio.save("./static/music/text.mp3")
 
 
 def play_audio(file_path):
@@ -16,9 +16,9 @@ def play_audio(file_path):
 
 
 if __name__ == "__main__":
-    file = "story"
-    story = open(file + ".txt")
-    text_to_mp3(story.read())
-    story.close()
-    play_audio("text.mp3")
+    # file = "./story"
+    # story = open(file + ".txt")
+    # text_to_mp3(story.read())
+    # story.close()
+    play_audio("./static/music/text.mp3")
 

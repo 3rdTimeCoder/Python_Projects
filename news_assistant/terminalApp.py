@@ -1,6 +1,8 @@
-from news_api_helper import *
-from audio_helper import *
+from helpers.news_api_helper import *
+from helpers.audio_helper import *
 
+
+# TODO: turn this into a cli-app
 
 def get_input():
     user_in = ''

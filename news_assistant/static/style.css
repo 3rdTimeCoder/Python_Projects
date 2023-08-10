@@ -183,12 +183,10 @@ nav li:hover {
     color: #faa1ac;
 }
 
-.home-container,
-.faq-container,
-.periodTracker {
+.home-container {
     color: #Fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(rgba(3, 3, 3, 0.78), rgba(3, 3, 3, 0.55)), 
@@ -197,7 +195,9 @@ nav li:hover {
 }
 
 .home-container .left {
-    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
 }
