@@ -2,14 +2,14 @@ from helpers.news_api_helper import *
 from helpers.audio_helper import *
 
 
-# TODO: turn this into a cli-app
+# TODO: turn this into a cli-app / tool
 
 def get_input():
     user_in = ''
     valid = [1,2,3,4]
 
-    print("1.Tech News \n2.South African News"
-        "\n3. US Business News \n5.Search News Topic")
+    print("1. Tech News \n2. South African News"
+        "\n3. US Business News \n5. Search News Topic")
     while not user_in.isdigit() or int(user_in) not in valid:
         user_in = input("Enter Number: ")
 
@@ -28,10 +28,10 @@ def generate_news_string(user_in):
     return f_res
 
 def read_news(text):
-    print("Preparing your news..")
+    print("Preparing your news...")
     text_to_mp3(text)
     print("Reading news...")
-    play_audio("text.mp3")
+    play_audio("./static/music/text.mp3")
     print("Goodbye.")
 
 

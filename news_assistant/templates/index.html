@@ -21,6 +21,14 @@
                 <a href="/USBiz" class="home-btn" style="color: black;" >US Business</a>
                 <a href="/Search" class="home-btn" style="color: black;" >Search</a>
             </div>
+
+            {% if showAudio %}
+                <div class="audio-container">
+                    <audio controls>
+                        <source src="{{ url_for('static', filename='music/text.mp3') }}" type="audio/mpeg" id="audio-player">
+                    </audio>
+                </div>
+            {% endif %}
             
         </div>
     </div>

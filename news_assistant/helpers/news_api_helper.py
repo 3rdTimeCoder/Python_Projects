@@ -32,6 +32,7 @@ def business_new_from_usa():
     url = ('https://newsapi.org/v2/top-headlines?'
         'country=us&category=business&'
         'apiKey=cb91f0bacf2547178828105cd1a47d3a')
+    return url
 
 
 def send_request(url):
@@ -43,9 +44,12 @@ def filter_response(response):
 
     if response['status'] == "ok":
         for i in range(response['totalResults']):
-            f_res += response['articles'][i]['title'] +"\n"
-            f_res += response['articles'][i]['description'] +"\n\n"
-            # url_to_article = response['articles'][i]['url'] # try use this url to scrap the full article content from the site.
+            try:
+                f_res += response['articles'][i]['title'] +"\n"
+                f_res += str(response['articles'][i]['description']) +"\n\n"
+                # url_to_article = response['articles'][i]['url'] # try use this url to scrap the full article content from the site.
+            except Exception as e:
+                pass
     else:
         f_res = "No news articles found"
     return f_res
