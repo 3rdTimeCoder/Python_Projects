@@ -24,8 +24,8 @@ pip install -r requirements.txt
 
 4. Sit back and relax:
    - The application will fetch the latest news headlines for your chosen category.
-   - It will convert the news articles into audio format.
-   - You'll hear the news being read aloud.
+   - It will convert the news headlines into audio format.
+   - You'll hear the news headlines being read aloud.
 
 ## Customization
 
