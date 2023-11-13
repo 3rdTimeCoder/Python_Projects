@@ -51,7 +51,7 @@ The News Reader project is a script that fetches and reads the latest news artic
 
 **Usage:**
 
-1. Run the script using `python news_reader.py`.
+1. Run the script using `python main.py`.
 2. Choose a category.
 3. Follow the prompts.
 
